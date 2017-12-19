@@ -15,29 +15,29 @@ public Board(){
   }
 
  //black pieces
-  setCell(0,4,new King(0,4,'k'));
-  setCell(0,0,new Rook(0,0,'r'));
-  setCell(0,1,new Knight(0,1,'n'));
-  setCell(0,2,new Bishop(0,2,'b'));
-  setCell(0,3,new Queen(0,3,'q'));
-  setCell(0,5,new Bishop(0,5,'b'));
-  setCell(0,6,new Knight(0,6,'n'));
-  setCell(0,7, new Rook(0,7,'r'));
+  setCell(0,4,new King(0,4,"k","b"));
+  setCell(0,0,new Rook(0,0,"r","b"));
+  setCell(0,1,new Knight(0,1,"n","b"));
+  setCell(0,2,new Bishop(0,2,"b","b"));
+  setCell(0,3,new Queen(0,3,"q","b"));
+  setCell(0,5,new Bishop(0,5,"b","b"));
+  setCell(0,6,new Knight(0,6,"n","b"));
+  setCell(0,7, new Rook(0,7,"r","b"));
   for(int i = 0; i<8; i++){
-    setCell(1,i,new Pawn(1,i,'p'));
+    setCell(1,i,new Pawn(1,i,"p","b"));
   }
 
   //white pieces
-  setCell(7,4,new King(7,4,'K'));
-  setCell(7,0,new Rook(7,0,'R'));
-  setCell(7,1,new Knight(7,1,'N'));
-  setCell(7,2,new Bishop(7,2,'B'));
-  setCell(7,3,new Queen(7,3,'Q'));
-  setCell(7,5, new Bishop(7,5,'B'));
-  setCell(7,6, new Knight(7,6,'N'));
-  setCell(7,7,new Rook(7,7,'R'));
+  setCell(7,4,new King(7,4,"K","w"));
+  setCell(7,0,new Rook(7,0,"R","w"));
+  setCell(7,1,new Knight(7,1,"N","w"));
+  setCell(7,2,new Bishop(7,2,"B","w"));
+  setCell(7,3,new Queen(7,3,"Q","w"));
+  setCell(7,5, new Bishop(7,5,"B","w"));
+  setCell(7,6, new Knight(7,6,"N","w"));
+  setCell(7,7,new Rook(7,7,"R","w"));
   for(int i=0;i<8;i++){
-    setCell(6,i, new Pawn(6,i,'P'));
+    setCell(6,i, new Pawn(6,i,"P","w"));
   }
 
 
@@ -60,19 +60,19 @@ public Board(Board b){
     {
       switch(b.getCell(i,j).getChar()){
 
-        case 'k': this.board[i][j] = new King (i,j,'k');  break;
-        case 'r': this.board[i][j] = new Rook (i,j,'r');  break;
-        case 'n': this.board[i][j] = new Knight (i,j,'n');  break;
-        case 'b': this.board[i][j] = new Bishop (i,j,'b');  break;
-        case 'q': this.board[i][j] = new Queen (i,j,'q');  break;
-        case 'p': this.board[i][j] = new Pawn (i,j,'p');  break;
+        case 'k': this.board[i][j] = new King (i,j,"k","b");  break;
+        case 'r': this.board[i][j] = new Rook (i,j,"r","b");  break;
+        case 'n': this.board[i][j] = new Knight (i,j,"n","b");  break;
+        case 'b': this.board[i][j] = new Bishop (i,j,"b","b");  break;
+        case 'q': this.board[i][j] = new Queen (i,j,"q","b");  break;
+        case 'p': this.board[i][j] = new Pawn (i,j,"p","b");  break;
 
-        case 'K': this.board[i][j] = new King (i,j,'K');  break;
-        case 'R': this.board[i][j] = new Rook (i,j,'R');  break;
-        case 'N': this.board[i][j] = new Knight (i,j,'N');  break;
-        case 'B': this.board[i][j] = new Bishop (i,j,'B');  break;
-        case 'Q': this.board[i][j] = new Queen (i,j,'Q');  break;
-        case 'P': this.board[i][j] = new Pawn (i,j,'P');  break;
+        case 'K': this.board[i][j] = new King (i,j,"K","w");  break;
+        case 'R': this.board[i][j] = new Rook (i,j,"R","w");  break;
+        case 'N': this.board[i][j] = new Knight (i,j,"N","w");  break;
+        case 'B': this.board[i][j] = new Bishop (i,j,"B","w");  break;
+        case 'Q': this.board[i][j] = new Queen (i,j,"Q","w");  break;
+        case 'P': this.board[i][j] = new Pawn (i,j,"P","w");  break;
 
       } }}}
 }
