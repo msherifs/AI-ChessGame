@@ -37,15 +37,26 @@ public class GameEngine {
 
     private void checkVictory(){
         Piece piece;
+        int noKings = 0;
+        GameState tempState;
         for (int i = 0; i < 8 ; i++){
             for (int j = 0; j < 8; j++) {
                 if (board.hasPiece(i,j)){
-                    Piece piece = board.getPiece(i,j);
-                    if (piece.toString().equalsIgnoreCase("k")){
-                        this.gameStatus = board.getColor() == 'b' ? HUMAN_WINNER : AI_WINNER;
+                    Piece piece = board.getCell(i,j);
+                    if (piece.toString().equals("k")){
+                        tempStatus = AI_WINNER;
+                        noKings++;
+                    }else if ( piece.toString().equals("K")) {
+                        tempStatus = HUMAN_WINNER;
+                        noKings++;
                     }
                 }   
             }
+        }
+        if (noKings == 2) {
+            gameStatus = IN_GAME;
+        } else {
+            gameStatus = tempStatus;
         }
     }
 
