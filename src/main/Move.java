@@ -20,9 +20,9 @@ public class Move {
 
 
      //cloning the piece to make a hypothetical move
-switch(p.getChar()){
+switch(p.getName()){
 
-        case 'k': this.p = new King (p.getX(),p.getY(),'k');  break;
+        case 'k': this.p = new King (p.getX(),p.getY(),"k");  break;
         case 'r': this.p = new Rook (p.getX(),p.getY(),,'r');  break;
         case 'n': this.p = new Knight (p.getX(),p.getY(),,'n');  break;
         case 'b': this.p = new Bishop (p.getX(),p.getY(),,'b');  break;
