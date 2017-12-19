@@ -13,31 +13,55 @@ public class Move {
   private Piece p;
 
  public Move(int oldX,int oldY,int newX, int newY,Piece p) {
-   this.oldX = oldX;
-   this.oldY = oldY;
-   this.newX = newX;
-   this.newY = newY;
+     this.oldX = oldX;
+     this.oldY = oldY;
+     this.newX = newX;
+     this.newY = newY;
 
 
      //cloning the piece to make a hypothetical move
-switch(p.getName()){
+     switch (p.getName()) {
 
-        case 'k': this.p = new King (p.getX(),p.getY(),"k");  break;
-        case 'r': this.p = new Rook (p.getX(),p.getY(),,'r');  break;
-        case 'n': this.p = new Knight (p.getX(),p.getY(),,'n');  break;
-        case 'b': this.p = new Bishop (p.getX(),p.getY(),,'b');  break;
-        case 'q': this.p = new Queen (p.getX(),p.getY(),,'q');  break;
-        case 'p': this.p = new Pawn (p.getX(),p.getY(),,'p');  break;
+         case "k":
+             this.p = new King(p.getX(), p.getY(), "k", "w");
+             break;
+         case "r":
+             this.p = new Rook(p.getX(), p.getY(), "r", "w");
+             break;
+         case "n":
+             this.p = new Knight(p.getX(), p.getY(), "n", "w");
+             break;
+         case "b":
+             this.p = new Bishop(p.getX(), p.getY(), "b", "w");
+             break;
+         case "q":
+             this.p = new Queen(p.getX(), p.getY(), "q", "w");
+             break;
+         case "p":
+             this.p = new Pawn(p.getX(), p.getY(), "p", "w");
+             break;
 
-        case 'K': this.p = new King (p.getX(),p.getY(),'K');  break;
-        case 'R': this.p = new Rook (p.getX(),p.getY(),'R');  break;
-        case 'N': this.p = new Knight (p.getX(),p.getY(),'N');  break;
-        case 'B': this.p = new Bishop (p.getX(),p.getY(),'B');  break;
-        case 'Q': this.p = new Queen (p.getX(),p.getY(),'Q');  break;
-        case 'P': this.p = new Pawn (p.getX(),p.getY(),'P');  break;
+         case "K":
+             this.p = new King(p.getX(), p.getY(), "K", "b");
+             break;
+         case "R":
+             this.p = new Rook(p.getX(), p.getY(), "R", "b");
+             break;
+         case "N":
+             this.p = new Knight(p.getX(), p.getY(), "N", "b");
+             break;
+         case "B":
+             this.p = new Bishop(p.getX(), p.getY(), "B", "b");
+             break;
+         case "Q":
+             this.p = new Queen(p.getX(), p.getY(), "Q", "b");
+             break;
+         case "P":
+             this.p = new Pawn(p.getX(), p.getY(), "P", "b");
+             break;
 
-      }
-
+     }
+ }
 
       public int getOldX(){
     		return this.oldX;
@@ -83,4 +107,4 @@ switch(p.getName()){
 
 
 
-}
+

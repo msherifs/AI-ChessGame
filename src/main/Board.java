@@ -60,21 +60,21 @@ public Board(Board b){
       for(int j = 0; j<8; j++){
     if (b.hasPiece(i,j))
     {
-      switch(b.getCell(i,j).getChar()){
+      switch(b.getCell(i,j).getName()){
 
-        case 'k': this.board[i][j] = new King (i,j,"k","b");  break;
-        case 'r': this.board[i][j] = new Rook (i,j,"r","b");  break;
-        case 'n': this.board[i][j] = new Knight (i,j,"n","b");  break;
-        case 'b': this.board[i][j] = new Bishop (i,j,"b","b");  break;
-        case 'q': this.board[i][j] = new Queen (i,j,"q","b");  break;
-        case 'p': this.board[i][j] = new Pawn (i,j,"p","b");  break;
+        case "k": this.board[i][j] = new King (i,j,"k","b");  break;
+        case "r": this.board[i][j] = new Rook (i,j,"r","b");  break;
+        case "n": this.board[i][j] = new Knight (i,j,"n","b");  break;
+        case "b": this.board[i][j] = new Bishop (i,j,"b","b");  break;
+        case "q": this.board[i][j] = new Queen (i,j,"q","b");  break;
+        case "p": this.board[i][j] = new Pawn (i,j,"p","b");  break;
 
-        case 'K': this.board[i][j] = new King (i,j,"K","w");  break;
-        case 'R': this.board[i][j] = new Rook (i,j,"R","w");  break;
-        case 'N': this.board[i][j] = new Knight (i,j,"N","w");  break;
-        case 'B': this.board[i][j] = new Bishop (i,j,"B","w");  break;
-        case 'Q': this.board[i][j] = new Queen (i,j,"Q","w");  break;
-        case 'P': this.board[i][j] = new Pawn (i,j,"P","w");  break;
+        case "K": this.board[i][j] = new King (i,j,"K","w");  break;
+        case "R": this.board[i][j] = new Rook (i,j,"R","w");  break;
+        case "N": this.board[i][j] = new Knight (i,j,"N","w");  break;
+        case "B": this.board[i][j] = new Bishop (i,j,"B","w");  break;
+        case "Q": this.board[i][j] = new Queen (i,j,"Q","w");  break;
+        case "P": this.board[i][j] = new Pawn (i,j,"P","w");  break;
 
       } }}}
 }
