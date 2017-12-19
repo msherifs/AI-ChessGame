@@ -2,14 +2,14 @@ package main;
 
 public class GameEngine {
 
-    private GameState gameStatus = IN_GAME;
+    private GameState gameStatus = GameState.IN_GAME;
     private String playerName;
     private Board gameBoard;
     private Move playerMove;
     private AIEngine aiEngine;
     private Scanner sc = new Scanner(System.in);
 
-    public ChessEngine(String playerName){
+    public GameEngine(String playerName){
         this.playerName = playerName;
         gameBoard = new Board();
         run();
@@ -17,18 +17,18 @@ public class GameEngine {
 
 
     private void run(){
-        while(gameStatus == IN_GAME){
+        while(gameStatus == GameState.IN_GAME){
             System.out.println(playerName + "'s Turn");
             playerMove = new Move(sc.nextLine());
             playerMove.makeMove(gameBoard);
             checkVictory();
-            if (gameStatus == HUMAN_WINNER){
+            if (gameStatus == GameState.HUMAN_WINNER){
                 showWinner();
                 break;
             }
             aiEngine.makeMove(gameBoard);
             checkVictory();
-            if (gameStatus == AI_WINNER){
+            if (gameStatus == GameState.AI_WINNER){
                 showWinner();
                 break;
             }
@@ -36,7 +36,6 @@ public class GameEngine {
     }
 
     private void checkVictory(){
-        Piece piece;
         int noKings = 0;
         GameState tempState;
         for (int i = 0; i < 8 ; i++){
@@ -44,10 +43,10 @@ public class GameEngine {
                 if (board.hasPiece(i,j)){
                     Piece piece = board.getCell(i,j);
                     if (piece.toString().equals("k")){
-                        tempStatus = AI_WINNER;
+                        tempState = GameState.AI_WINNER;
                         noKings++;
                     }else if ( piece.toString().equals("K")) {
-                        tempStatus = HUMAN_WINNER;
+                        tempState = GameState.HUMAN_WINNER;
                         noKings++;
                     }
                 }
@@ -56,7 +55,7 @@ public class GameEngine {
         if (noKings == 2) {
             gameStatus = IN_GAME;
         } else {
-            gameStatus = tempStatus;
+            gameStatus = tempState;
         }
     }
 
