@@ -50,7 +50,7 @@ public class GameEngine {
                         tempStatus = HUMAN_WINNER;
                         noKings++;
                     }
-                }   
+                }
             }
         }
         if (noKings == 2) {
@@ -73,5 +73,18 @@ public class GameEngine {
 
     private enum GameState {
         IN_GAME, AI_WINNER, HUMAN_WINNER
+    }
+
+
+
+    private void makeActualMove (int oldX , int oldY , int newX , int newY){
+
+    Piece movingPiece =this.gameBoard.getPiece(oldX,oldY);
+    this.gameBoard.setCell(oldX,oldY) = null;
+    this.gameBoard.setCell(newX, newY) = movingPiece ;
+    movingPiece.setX(newX);
+    movingPiece.setY(newY);
+
+
     }
 }
