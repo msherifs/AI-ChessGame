@@ -1,6 +1,8 @@
 // NOTE THAT this class represents the hypothetical moves that the AI makes to determine which move is better ,  not the actual moves on the board
 
 // to make an actual move you HAVE TO change the ( x and y ) both on the board object (setCell) and the piece object it self (setX) .
+package main;
+
 
 public class Move {
 
