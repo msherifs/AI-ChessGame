@@ -1,11 +1,15 @@
 package main;
 public class King extends Piece {
 
-    public King(int x, int y, String color , String name) {
-        super(x, y, name , color);
+    public King(int x, int y, String name , String color) {
+        super(x, y, name , color, 32767);
     }
 
     public boolean checkMove(int x, int y, Board b) {
+
+        if(b.getCell(x,y).getColor().equals(this.getColor()))
+            return false;
+
         int old_x = super.getX();
         int old_y = super.getY();
         int new_x = x;

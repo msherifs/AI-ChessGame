@@ -3,9 +3,13 @@ package main;
 public class Bishop extends Piece{
 	public Bishop (int x, int y,String name, String color)
 	{
-		super(x,y,name,color);
+		super(x,y,name,color, 325);
 	}
 	public boolean checkMove(int x, int y, Board b) {
+
+        if(b.getCell(x,y).getColor().equals(this.getColor()))
+            return false;
+
         int old_x = super.getX();
         int old_y = super.getY();
         int new_x = x;
