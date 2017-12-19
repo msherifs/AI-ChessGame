@@ -1,8 +1,8 @@
 package main;
 
 public class Main {
-
+	GameEngine gameEngine;
     public static void main(String[] args) {
-        System.out.println("sad");
+        gameEngine = new GameEngine("Test");
     }
 }

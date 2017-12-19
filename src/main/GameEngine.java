@@ -12,6 +12,7 @@ public class GameEngine {
     public ChessEngine(String playerName){
         this.playerName = playerName;
         gameBoard = new Board();
+        run();
     }
 
 
@@ -21,8 +22,16 @@ public class GameEngine {
             playerMove = new Move(sc.nextLine());
             playerMove.makeMove(gameBoard);
             checkVictory();
+            if (gameStatus == HUMAN_WINNER){
+                showWinner();
+                break;
+            }
             aiEngine.makeMove(gameBoard);
             checkVictory();
+            if (gameStatus == AI_WINNER){
+                showWinner();
+                break;
+            }
         }
     }
 
@@ -37,6 +46,17 @@ public class GameEngine {
                     }
                 }   
             }
+        }
+    }
+
+    private void showWinner(){
+        switch(gameStatus){
+            case HUMAN_WINNER:
+                System.out.println("White has beaten the black !");
+                break;
+            case AI_WINNER:
+                System.out.println("Black has beaten the white !");
+                break;
         }
     }
 
