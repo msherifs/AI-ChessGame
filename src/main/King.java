@@ -29,7 +29,7 @@ public class King extends Piece {
             if (b.hasPiece(7, 7)) {
                 if (b.getCell(7, 7).getType().equals("Rook")) {
                     if (old_x == 4 && old_y == 7 && new_x == 6 && new_y == 7) {
-                        if (!b.hasPiece(5, 7) && !b.hasPiece(6, 7)) { 
+                        if (!b.hasPiece(5, 7) && !b.hasPiece(6, 7)) {
                             return true;
                         }
                     }
@@ -53,5 +53,10 @@ public class King extends Piece {
     public String getType() {
         return "King";
     }
+    public String getUni() {
+        if (this.getColor().equals("w")) {
+            return "♔  KING";
+        } else return "♚  KING ";
 
-}
+
+    }}

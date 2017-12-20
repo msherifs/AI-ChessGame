@@ -53,7 +53,7 @@ public abstract class Piece {
     public void setY(int y) {
         this.y = y;
     }
-
+    public abstract String getUni();
     public abstract String getType();
 
     public abstract boolean checkMove(int x, int y, Board b);

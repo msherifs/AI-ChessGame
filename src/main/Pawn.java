@@ -94,6 +94,13 @@ public class Pawn extends Piece {
             }
         }
     }
+    public String getUni() {
+        if (this.getColor().equals("w")) {
+            return "♙ PAWN ";
+        } else return "♟ PAWN ";
+
+
+    }
 
     public String getType() {
         return "Pawn";
