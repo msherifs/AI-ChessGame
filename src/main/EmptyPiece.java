@@ -17,7 +17,7 @@ public class EmptyPiece extends Piece{
     }
     public String getUni() {
 
-        return ("       ");
+        return (" ");
 
     }
 }

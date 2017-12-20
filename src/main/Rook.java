@@ -84,8 +84,8 @@ public class Rook extends Piece{
 	}
 	public String getUni() {
 		if (this.getColor().equals("w")) {
-			return "♖ ROOK";
-		} else return "♜ ROOK";
+			return "♖";
+		} else return "♜";
 
 
 	}

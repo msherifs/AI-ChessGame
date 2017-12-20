@@ -110,8 +110,8 @@ public class Queen extends Piece {
     }
     public String getUni() {
         if (this.getColor().equals("w")) {
-            return "♕ QUEEN";
-        } else return "♛ QUEEN";
+            return "♕";
+        } else return "♛";
 
 
     }

@@ -55,8 +55,8 @@ public class King extends Piece {
     }
     public String getUni() {
         if (this.getColor().equals("w")) {
-            return "♔  KING";
-        } else return "♚  KING ";
+            return "♔";
+        } else return "♚";
 
 
     }}

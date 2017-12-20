@@ -68,8 +68,8 @@ public class Bishop extends Piece{
     }
     public String getUni() {
         if (this.getColor().equals("w")) {
-            return "♗ BISHOP";
-        } else return "♝ BISHOP";
+            return "♗";
+        } else return "♝";
 
 
     }
