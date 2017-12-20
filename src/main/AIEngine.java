@@ -153,6 +153,7 @@ public class AIEngine {
 				}
 			}
 		}
+
 		BestMove temp = turn.equals("w") ? beta : alpha;
 		String nTurn = turn.equals("b") ? "w" : "b";
 
