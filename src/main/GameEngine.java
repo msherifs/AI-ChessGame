@@ -48,11 +48,6 @@ public class GameEngine {
                 showWinner();
                 break;
             }
-//            alpha = new BestMove(Integer.MAX_VALUE);
-//            beta = new BestMove(Integer.MIN_VALUE);
-//            moveToDo = ai.minMax(5, alpha, beta, gameBoard, "b");
-//            System.out.println("Best Move: " + moveToDo.getMove() + "With value: " + moveToDo.getValue() );
-//            GameEngine.makeActualMove(moveToDo.getMove().getOldX(), moveToDo.getMove().getOldY(), moveToDo.getMove().getNewX(), moveToDo.getMove().getNewY(), gameBoard);
             ai.minMax(5, Integer.MIN_VALUE, Integer.MAX_VALUE, gameBoard, "b");
             System.out.println(gameBoard);
             checkVictory();
