@@ -3,7 +3,7 @@ package main;
 public class Pawn extends Piece {
 
     public Pawn(int x, int y, String name, String color) {
-        super(x, y, name, color, 100);
+        super(x, y, name, color, 100, 6);
     }
 
     public boolean checkMove(int x, int y, Board b) {
@@ -98,8 +98,31 @@ public class Pawn extends Piece {
         if (this.getColor().equals("w")) {
             return "♙";
         } else return "♟";
+    }
 
+    public void calculateAttackAndDefense(Board b) {
+        defenceValue = 0;
+        attackValue = 0;
 
+        if(x+1 < 8 && y+1 < 8 && b.hasPiece(x+1,y+1)){
+            Piece piece = b.getCell(x+1,y+1);
+            if(piece.getColor().equals(color)){
+                defenceValue += this.getActionValue()-piece.getActionValue();
+            }
+            else{
+                attackValue += piece.getActionValue()-this.getActionValue();
+            }
+        }
+
+        if(x-1 >= 0 && y+1 < 8 && b.hasPiece(x-1,y+1)){
+            Piece piece = b.getCell(x-1,y+1);
+            if(piece.getColor().equals(color)){
+                defenceValue += this.getActionValue()-piece.getActionValue();
+            }
+            else{
+                attackValue += piece.getActionValue()-this.getActionValue();
+            }
+        }
     }
 
     public String getType() {

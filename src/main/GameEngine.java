@@ -48,6 +48,7 @@ public class GameEngine {
                 showWinner();
                 break;
             }
+
             ai.minMax(5, Integer.MIN_VALUE, Integer.MAX_VALUE, gameBoard, "b");
             System.out.println(gameBoard);
             checkVictory();
@@ -105,5 +106,6 @@ public class GameEngine {
         b.setCell(newX, newY, movingPiece);
         movingPiece.setX(newX);
         movingPiece.setY(newY);
+        movingPiece.calculateAttackAndDefense(b);
     }
 }

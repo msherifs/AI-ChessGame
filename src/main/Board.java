@@ -132,6 +132,16 @@ public class Board {
         this.board[row][col] = piece;
     }
 
+    public void updateDefenceAndAttack(){
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                if(this.hasPiece(i,j)){
+                    this.board[i][j].calculateAttackAndDefense(this);
+                }
+            }
+        }
+    }
+
     public void clearCell(int row, int col) {
         this.board[row][col] = null;
     }

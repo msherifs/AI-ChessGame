@@ -182,69 +182,28 @@ public class AIEngine {
 ////		System.out.println(nextBoard);
 //		return temp;
 //	}
-//
-//	/*public int evaluate(Board b) {
-//		int whiteScore = 0;
-//		int blackScore = 0;
-//
-//		for (int i = 0; i < 8; i++) {
-//			for (int j = 0; j < 8; j++) {
-//				if (b.hasPiece(i, j)) {
-//					//calculatePiece
-//					Piece piece = b.getCell(i, j);
-//					if (piece.getColor().equals("b"))
-//						blackScore += calculatePiece(piece, i, j, false, false);
-//					else
-//						whiteScore += calculatePiece(piece, i, j, false, false);
-//				}
-//			}
-//		}
-//
-//		return blackScore - whiteScore; //returns blackscore-whitescore, black player tries to maximize, white player tries to minimize
-//	}*/
-	
-	public int evaluate(Board b){
-		int whitescore = 0;
-		int blackscore = 0;
+//*/
+	private int evaluate(Board b) {
+		int whiteScore = 0;
+		int blackScore = 0;
 
-		/*
-		 * Iterates through entire board.   
-		 */
-		for(int i = 0; i<8; i++){
-			for(int j=0; j<8; j++){
-				if(b.hasPiece(i, j)){
-					if(b.getCell(i, j).getColor().equals("w")){ //case that piece is white
-						if(b.getCell(i,j).getType() == "Queen"){
-							whitescore += 9;
-						}else if(b.getCell(i,j).getType() == "Rook"){
-							whitescore += 5;
-						}else if(b.getCell(i,j).getType() == "Knight" || b.getCell(i,j).getType() == "Bishop"){
-							whitescore += 3;
-						}else if(b.getCell(i,j).getType() == "Pawn"){
-							whitescore += 1;
-						}else if(b.getCell(i,j).getType() == "King"){
-							whitescore += 10000000;
-						}
-					}else if(b.getCell(i,j).getColor().equals("b")){ //case that piece is black
-						if(b.getCell(i,j).getType() == "Queen"){
-							blackscore += 9;
-						}else if(b.getCell(i,j).getType() == "Rook"){
-							blackscore += 5;
-						}else if(b.getCell(i,j).getType() == "Knight" || b.getCell(i,j).getType() == "Bishop"){
-							blackscore += 3;
-						}else if(b.getCell(i,j).getType() == "Pawn"){
-							blackscore += 1;
-						}else if(b.getCell(i,j).getType() == "King"){
-							blackscore += 10000000;
-						}
-					}
+		for (int i = 0; i < 8; i++) {
+			for (int j = 0; j < 8; j++) {
+				if (b.hasPiece(i, j)) {
+					//calculatePiece
+					Piece piece = b.getCell(i, j);
+					if (piece.getColor().equals("b"))
+						blackScore += calculatePiece(piece, i, j, false, false);
+					else
+						whiteScore += calculatePiece(piece, i, j, false, false);
 				}
 			}
 		}
-		return blackscore-whitescore; //returns blackscore-whitescore, black player tries to maximize, white player tries to minimize
+
+		return blackScore - whiteScore; //returns blackscore-whitescore, black player tries to maximize, white player tries to minimize
 	}
 
-	public int calculatePiece(Piece piece, int row, int col, boolean castled, boolean endGame) {
+	private int calculatePiece(Piece piece, int row, int col, boolean castled, boolean endGame) {
 
 		int x = (piece.getColor().equals("b")) ? row : col;
 		int y = (piece.getColor().equals("b")) ? col : row;
@@ -252,6 +211,9 @@ public class AIEngine {
 		int score = 0;
 
 		score += piece.getValue(); //TODO: Add getValue to each piece
+
+		score += piece.getDefenceValue();
+		score -= piece.getAttackValue();
 
 		if (piece.getType() == "Knight") {
 			if (endGame) {
@@ -335,7 +297,6 @@ public class AIEngine {
 //
 //
 //	}
-
 
 	public int minMax(int depth, int alpha, int beta, Board b, String turn){
 		if (depth == 0){
