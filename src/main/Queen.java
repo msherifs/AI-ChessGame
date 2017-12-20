@@ -22,7 +22,7 @@ public class Queen extends Piece {
             }
         }
         //the queen moves in any place just check no pieces in the direction choosen
-       
+
         if ((old_x == new_x) && (new_x >= 0 && new_x <= 7) && (new_y >= 0 && new_y <= 7)) {
             if (new_y > old_y) {
                 for (int i = 1; i < new_y - old_y; i++) {
@@ -107,6 +107,13 @@ public class Queen extends Piece {
 
     public String getType() {
         return "Queen";
+    }
+    public String getUni() {
+        if (this.getColor().equals("w")) {
+            return "♕ QUEEN";
+        } else return "♛ QUEEN";
+
+
     }
 
 }

@@ -15,4 +15,9 @@ public class EmptyPiece extends Piece{
     public String getType() {
         return "e";
     }
+    public String getUni() {
+
+        return ("       ");
+
+    }
 }

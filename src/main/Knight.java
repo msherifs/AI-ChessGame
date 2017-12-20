@@ -40,4 +40,11 @@ public class Knight extends Piece {
 
         return "Knight";
     }
+    public String getUni() {
+        if (this.getColor().equals("w")) {
+            return "♘ KNIT";
+        } else return "♞ KNIT";
+
+
+    }
 }
