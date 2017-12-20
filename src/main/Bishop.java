@@ -3,7 +3,7 @@ package main;
 public class Bishop extends Piece{
     public Bishop (int x, int y,String name, String color)
     {
-        super(x,y,name,color, 325);
+        super(x,y,name,color, 325, 30);
     }
     public boolean checkMove(int x, int y, Board b) {
 
@@ -70,7 +70,59 @@ public class Bishop extends Piece{
         if (this.getColor().equals("w")) {
             return "♗";
         } else return "♝";
+    }
 
+    public void calculateAttackAndDefense(Board b) {
+        attackValue = 0;
+        defenceValue = 0;
+
+        for (int i = x + 1, j = y + 1; i < 8 && j < 8; i++, j++) {
+            if (b.hasPiece(i, j)) {
+                Piece piece = b.getCell(i, j);
+                if (piece.getColor().equals(this.getColor())) { //if this piece is an ally
+                    this.defenceValue += this.actionValue - piece.getActionValue();
+                } else { //if this piece is a foe
+                    this.attackValue += piece.actionValue - this.actionValue;
+                }
+                break;
+            }
+        }
+
+        for (int i = x - 1, j = y + 1; i >= 0 && j < 8; i--, j++) {
+            if (b.hasPiece(i, j)) {
+                Piece piece = b.getCell(i, j);
+                if (piece.getColor().equals(this.getColor())) { //if this piece is an ally
+                    this.defenceValue += this.actionValue - piece.getActionValue();
+                } else { //if this piece is a foe
+                    this.attackValue += piece.actionValue - this.actionValue;
+                }
+                break;
+            }
+        }
+
+        for (int i = x + 1, j = y - 1; i < 8 && j >= 0; i++, j--) {
+            if (b.hasPiece(i, j)) {
+                Piece piece = b.getCell(i, j);
+                if (piece.getColor().equals(this.getColor())) { //if this piece is an ally
+                    this.defenceValue += this.actionValue - piece.getActionValue();
+                } else { //if this piece is a foe
+                    this.attackValue += piece.actionValue - this.actionValue;
+                }
+                break;
+            }
+        }
+
+        for (int i = x - 1, j = y - 1; i >= 0 && j >= 0; i--, j--) {
+            if (b.hasPiece(i, j)) {
+                Piece piece = b.getCell(i, j);
+                if (piece.getColor().equals(this.getColor())) { //if this piece is an ally
+                    this.defenceValue += this.actionValue - piece.getActionValue();
+                } else { //if this piece is a foe
+                    this.attackValue += piece.actionValue - this.actionValue;
+                }
+                break;
+            }
+        }
 
     }
 

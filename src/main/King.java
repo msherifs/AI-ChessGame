@@ -1,13 +1,14 @@
 package main;
+
 public class King extends Piece {
 
-    public King(int x, int y, String name , String color) {
-        super(x, y, name , color, 32767);
+    public King(int x, int y, String name, String color) {
+        super(x, y, name, color, 32767, 1);
     }
 
     public boolean checkMove(int x, int y, Board b) {
 
-        if(b.getCell(x,y).getColor().equals(this.getColor()))
+        if (b.getCell(x, y).getColor().equals(this.getColor()))
             return false;
 
         int old_x = super.getX();
@@ -50,13 +51,35 @@ public class King extends Piece {
         return false;
     }
 
+    public void calculateAttackAndDefense(Board b) {
+        defenceValue = 0;
+        attackValue = 0;
+
+        int[] xPos = new int[]{this.getX() + 1, this.getX() - 1, this.getX(), this.getX(), this.getX() + 1, this.getX() + 1, this.getX() - 1, this.getX() - 1};
+        int[] yPos = new int[]{this.getY(), this.getY(), this.getY() + 1, this.getY() - 1, this.getY() + 1, this.getY() - 1, this.getY() - 1, this.getY() + 1};
+
+        for (int i = 0; i < 8; i++) {
+            if(xPos[i]<0 || xPos[i]>7 || yPos[i]<0 || yPos[i]>7)
+                continue;
+            if (b.hasPiece(xPos[i], yPos[i])) { //if there's a piece in my way
+                Piece piece = b.getCell(xPos[i],yPos[i]);
+                if (piece.getColor().equals(this.getColor())) { //if this piece is an ally
+                    this.defenceValue +=this.actionValue-piece.getActionValue();
+                } else { //if this piece is a foe
+                    this.attackValue +=piece.actionValue-this.actionValue;
+                }
+            }
+        }
+    }
+
     public String getType() {
         return "King";
     }
+
     public String getUni() {
         if (this.getColor().equals("w")) {
             return "♔";
         } else return "♚";
 
-
-    }}
+    }
+}

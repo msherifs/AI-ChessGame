@@ -53,7 +53,7 @@ public class GameEngine {
 //            moveToDo = ai.minMax(5, alpha, beta, gameBoard, "b");
 //            System.out.println("Best Move: " + moveToDo.getMove() + "With value: " + moveToDo.getValue() );
 //            GameEngine.makeActualMove(moveToDo.getMove().getOldX(), moveToDo.getMove().getOldY(), moveToDo.getMove().getNewX(), moveToDo.getMove().getNewY(), gameBoard);
-            ai.minMax(5, Integer.MIN_VALUE, Integer.MAX_VALUE, gameBoard, "b");
+            ai.minMax(7, Integer.MIN_VALUE, Integer.MAX_VALUE, gameBoard, "b");
             System.out.println(gameBoard);
             checkVictory();
             if (gameStatus == GameState.AI_WINNER){
@@ -110,5 +110,6 @@ public class GameEngine {
         b.setCell(newX, newY, movingPiece);
         movingPiece.setX(newX);
         movingPiece.setY(newY);
+        movingPiece.calculateAttackAndDefense(b);
     }
 }

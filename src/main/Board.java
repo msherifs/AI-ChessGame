@@ -114,29 +114,38 @@ public class Board {
     public String toString() {
         String a =
                 "       0        1        2         3        4       5       6        7     \n" +
-                        "0 |    " + this.board[0][0].getUni() + "    |   " + this.board[0][1].getUni() + "    |   " + this.board[0][2].getUni() + "    |   " + this.board[0][3].getUni() + "    |   " + this.board[0][4].getUni() + "    |   " + this.board[0][5].getUni() + "    |   " + this.board[0][6].getUni() + "    |   " + this.board[0][7].getUni()+ "    | 0\n" +
-                        "__|_________|________|________|________|________|________|________|________|__\n"+
+                        "0 |    " + this.board[0][0].getUni() + "    |   " + this.board[0][1].getUni() + "    |   " + this.board[0][2].getUni() + "    |   " + this.board[0][3].getUni() + "    |   " + this.board[0][4].getUni() + "    |   " + this.board[0][5].getUni() + "    |   " + this.board[0][6].getUni() + "    |   " + this.board[0][7].getUni() + "    | 0\n" +
+                        "__|_________|________|________|________|________|________|________|________|__\n" +
                         "1 |    " + this.board[1][0].getUni() + "    |   " + this.board[1][1].getUni() + "    |   " + this.board[1][2].getUni() + "    |   " + this.board[1][3].getUni() + "    |   " + this.board[1][4].getUni() + "    |   " + this.board[1][5].getUni() + "    |   " + this.board[1][6].getUni() + "    |   " + this.board[1][7].getUni() + "    | 1\n" +
-                        "__|_________|________|________|________|________|________|________|________|__\n"+
+                        "__|_________|________|________|________|________|________|________|________|__\n" +
                         "2 |    " + this.board[2][0].getUni() + "    |   " + this.board[2][1].getUni() + "    |   " + this.board[2][2].getUni() + "    |   " + this.board[2][3].getUni() + "    |   " + this.board[2][4].getUni() + "    |   " + this.board[2][5].getUni() + "    |   " + this.board[2][6].getUni() + "    |   " + this.board[2][7].getUni() + "    | 2\n" +
-                        "__|_________|________|________|________|________|________|________|________|__\n"+
+                        "__|_________|________|________|________|________|________|________|________|__\n" +
                         "3 |    " + this.board[3][0].getUni() + "    |   " + this.board[3][1].getUni() + "    |   " + this.board[3][2].getUni() + "    |   " + this.board[3][3].getUni() + "    |   " + this.board[3][4].getUni() + "    |   " + this.board[3][5].getUni() + "    |   " + this.board[3][6].getUni() + "    |   " + this.board[3][7].getUni() + "    | 3\n" +
-                        "__|_________|________|________|________|________|________|________|________|__\n"+
+                        "__|_________|________|________|________|________|________|________|________|__\n" +
                         "4 |    " + this.board[4][0].getUni() + "    |   " + this.board[4][1].getUni() + "    |   " + this.board[4][2].getUni() + "    |   " + this.board[4][3].getUni() + "    |   " + this.board[4][4].getUni() + "    |   " + this.board[4][5].getUni() + "    |   " + this.board[4][6].getUni() + "    |   " + this.board[4][7].getUni() + "    | 4\n" +
-                        "__|_________|________|________|________|________|________|________|________|__\n"+
+                        "__|_________|________|________|________|________|________|________|________|__\n" +
                         "5 |    " + this.board[5][0].getUni() + "    |   " + this.board[5][1].getUni() + "    |   " + this.board[5][2].getUni() + "    |   " + this.board[5][3].getUni() + "    |   " + this.board[5][4].getUni() + "    |   " + this.board[5][5].getUni() + "    |   " + this.board[5][6].getUni() + "    |   " + this.board[5][7].getUni() + "    | 5\n" +
-                        "__|_________|________|________|________|________|________|________|________|__\n"+
+                        "__|_________|________|________|________|________|________|________|________|__\n" +
                         "6 |    " + this.board[6][0].getUni() + "    |   " + this.board[6][1].getUni() + "    |   " + this.board[6][2].getUni() + "    |   " + this.board[6][3].getUni() + "    |   " + this.board[6][4].getUni() + "    |   " + this.board[6][5].getUni() + "    |   " + this.board[6][6].getUni() + "    |   " + this.board[6][7].getUni() + "    | 6\n" +
-                        "__|_________|________|________|________|________|________|________|________|__\n"+
+                        "__|_________|________|________|________|________|________|________|________|__\n" +
                         "7 |    " + this.board[7][0].getUni() + "    |   " + this.board[7][1].getUni() + "    |   " + this.board[7][2].getUni() + "    |   " + this.board[7][3].getUni() + "    |   " + this.board[7][4].getUni() + "    |   " + this.board[7][5].getUni() + "    |   " + this.board[7][6].getUni() + "    |   " + this.board[7][7].getUni() + "    | 7\n" +
-                        "       0        1        2         3        4       5       6        7     \n"
-                ;
+                        "       0         1         2          3         4        5        6         7     \n";
 
         return a;
     }
 
     public void setCell(int row, int col, Piece piece) {
         this.board[row][col] = piece;
+    }
+
+    public void updateDefenceAndAttack(){
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                if(this.hasPiece(i,j)){
+                    this.board[i][j].calculateAttackAndDefense(this);
+                }
+            }
+        }
     }
 
     public void clearCell(int row, int col) {

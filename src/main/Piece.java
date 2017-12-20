@@ -2,24 +2,41 @@ package main;
 
 
 public abstract class Piece {
-    private int x, y;
-    private String name;
-    private String color;
-    private boolean selected;
-    private int value;
+    protected int x, y;
+    protected String name;
+    protected String color;
+    protected boolean selected;
+    protected int value;
+    protected int actionValue; //subtracted in case of defending and added in case of attacking
+    protected int attackValue;
+    protected int defenceValue;
 
-    public int getValue() {
-        return value;
-    }
-
-    public Piece(int x, int y, String name, String color, int value) {
-
+    public Piece(int x, int y, String name, String color, int value, int actionValue) {
         this.x = x;
         this.y = y;
         this.selected = false;
         this.name = name;
         this.color = color;
         this.value = value;
+        attackValue = 0;
+        defenceValue = 0;
+        this.actionValue = actionValue;
+    }
+
+    public int getDefenceValue() {
+        return defenceValue;
+    }
+
+    public int getAttackValue() {
+        return attackValue;
+    }
+
+    public int getActionValue() {
+        return actionValue;
+    }
+
+    public int getValue() {
+        return value;
     }
 
     public void setSelected(boolean selected) {
@@ -58,10 +75,10 @@ public abstract class Piece {
 
     public abstract boolean checkMove(int x, int y, Board b);
 
+    public abstract void calculateAttackAndDefense(Board b);
 
     @Override
     public String toString() {
         return getName();
     }
-
 }
