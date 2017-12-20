@@ -8,16 +8,11 @@ public class GameEngine {
 
     private GameState gameStatus = GameState.IN_GAME;
     private String playerName;
-    private String moveString;
     private Board gameBoard;
-    private Move playerMove;
-    private AIEngine aiEngine;
-    private BestMove alpha;
-    private BestMove beta;
-    private BestMove moveToDo;
     private Scanner sc = new Scanner(System.in);
     private AIEngine ai;
-    private int sss;
+    private boolean inputStatus = true;
+
 
     public GameEngine(String playerName){
         this.playerName = playerName;
@@ -28,28 +23,19 @@ public class GameEngine {
 
 
     private void run(){
-        if (sss > 0){
-            System.out.println("sssfaasd");
-            return;
-        } else {
-            System.out.println("adsadsadsadA&A");
-
-        }
         while(gameStatus == GameState.IN_GAME){
 
             System.out.println(playerName + "'s Turn");
             System.out.println(this.gameBoard);
-            moveString = sc.nextLine();
-            GameEngine.makeActualMove(Integer.parseInt("" + moveString.charAt(0)), Integer.parseInt("" + moveString.charAt(1)),
-                    Integer.parseInt("" + moveString.charAt(3)), Integer.parseInt("" + moveString.charAt(4)), gameBoard);
-            System.out.println(gameBoard);
+            checkAndMoveUser();
+            //System.out.println(gameBoard);
             checkVictory();
             if (gameStatus == GameState.HUMAN_WINNER){
                 showWinner();
                 break;
             }
 
-            ai.minMax(5, Integer.MIN_VALUE, Integer.MAX_VALUE, gameBoard, "b");
+            ai.minMax(3, Integer.MIN_VALUE, Integer.MAX_VALUE, gameBoard, "b");
             System.out.println(gameBoard);
             checkVictory();
             if (gameStatus == GameState.AI_WINNER){
@@ -99,6 +85,23 @@ public class GameEngine {
     }
 
 
+    private void checkAndMoveUser(){
+        while (true) {
+            System.out.println("Write down a move in format currentxy,nextxy");
+            String moveString = sc.nextLine();
+            if (gameBoard.hasPiece(Integer.parseInt("" + moveString.charAt(0)), Integer.parseInt("" + moveString.charAt(1)))){
+                Piece pc = gameBoard.getCell(Integer.parseInt("" + moveString.charAt(0)), Integer.parseInt("" + moveString.charAt(1)));
+                if (!pc.checkMove(Integer.parseInt("" + moveString.charAt(3)), Integer.parseInt("" + moveString.charAt(4)), gameBoard)){
+                    System.out.println("Wrong Move, Try again");
+                } else {
+                    makeActualMove(Integer.parseInt("" + moveString.charAt(0)), Integer.parseInt("" + moveString.charAt(1)), Integer.parseInt("" + moveString.charAt(3)), Integer.parseInt("" + moveString.charAt(4)), gameBoard);
+                    return;
+                }
+            } else {
+                System.out.println("Wrong Move, Try again");
+            }
+        }
+    }
 
     public static void makeActualMove (int oldX , int oldY , int newX , int newY, Board b){
         Piece movingPiece = b.getCell(oldX,oldY);
