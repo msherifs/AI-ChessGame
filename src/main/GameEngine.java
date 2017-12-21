@@ -34,6 +34,7 @@ public class GameEngine {
     private void run(){
         while(gameStatus == GameState.IN_GAME){
 
+            checkCheckMate();
             System.out.println(playerName + "'s Turn");
             System.out.println(this.gameBoard);
             checkAndMoveUser();
@@ -93,6 +94,23 @@ public class GameEngine {
         IN_GAME, AI_WINNER, HUMAN_WINNER
     }
 
+    private void checkCheckMate(){
+
+        for(int i = 0; i<8; i++){
+            for(int j=0; j<8; j++){
+                if (gameBoard.hasPiece(i,j)){
+                    Piece p = gameBoard.getCell(i,j);
+                    for(int k = 0; k<8; k++) {
+                        for (int l = 0; l < 8; l++) {
+                            if(p.checkMove(k, l, gameBoard)&&gameBoard.getCell(k,l).getType().equals("King")){
+                                System.out.println("CHECKMATE !!!!!! , "+playerName );
+
+                            }
+                        }
+                    }
+                }}}
+
+    }
 
     private void checkAndMoveUser(){
         while (true) {

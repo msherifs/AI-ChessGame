@@ -20,7 +20,7 @@ public class Main {
             System.out.println("Enter Difficulty, 1 for Easy; 2 for Medium; 3 for Hard");
             int diff = sc.nextInt();
             diff *= 2;
-            GameEngine gameEngine = new GameEngine("Test", diff);
+            GameEngine gameEngine = new GameEngine(pname, diff);
         } else {
             System.out.println("Enter Filename :");
             String fname = sc.nextLine();
