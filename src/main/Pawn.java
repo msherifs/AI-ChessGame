@@ -63,7 +63,7 @@ public class Pawn extends Piece implements Serializable{
                 }
                 return false;
             }else{//case pawn is nt in original position
-                if(Math.abs(new_col - old_col) == 1 && new_row == old_row +1 && b.hasPiece(new_row, new_row)){
+                if(Math.abs(new_col - old_col) == 1 && new_row == old_row +1 && b.hasPiece(new_row, new_col)){
                     //System.out.println("Legal move: " + getType()  + " from: (" + old_x + "," + old_y + ") to (" + new_x + "," + new_y + ")");
 
                     return true;
