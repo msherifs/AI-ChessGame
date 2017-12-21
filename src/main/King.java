@@ -1,6 +1,12 @@
 package main;
 
-public class King extends Piece {
+import java.io.Serializable;
+
+public class King extends Piece implements Serializable{
+
+    public King(){
+
+    }
 
     public King(int x, int y, String name, String color) {
         super(x, y, name, color, 32767, 1);

@@ -1,6 +1,12 @@
 package main;
 
-public class Knight extends Piece {
+import java.io.Serializable;
+
+public class Knight extends Piece implements Serializable{
+
+    public Knight(){
+
+    }
 
     public Knight(int x, int y, String name, String color) {
         super(x, y, name, color, 320, 3);

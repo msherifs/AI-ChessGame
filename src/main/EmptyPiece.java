@@ -1,6 +1,12 @@
 package main;
 
-public class EmptyPiece extends Piece{
+import java.io.Serializable;
+
+public class EmptyPiece extends Piece implements Serializable{
+
+    public EmptyPiece(){
+
+    }
 
     public EmptyPiece(int x, int y){
         super(x, y, " ", "e", 0, 0);

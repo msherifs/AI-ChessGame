@@ -1,6 +1,12 @@
 package main;
 
-public class Queen extends Piece {
+import java.io.Serializable;
+
+public class Queen extends Piece implements Serializable{
+
+    public Queen(){
+
+    }
 
     public Queen(int x, int y, String name, String color) {
         super(x, y, name , color, 975, 1);

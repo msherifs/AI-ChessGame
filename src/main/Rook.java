@@ -1,6 +1,12 @@
 package main;
 
-public class Rook extends Piece {
+import java.io.Serializable;
+
+public class Rook extends Piece implements Serializable{
+    public Rook(){
+
+    }
+
     public Rook(int x, int y, String name, String color) {
         super(x, y, name, color, 500, 2);
     }

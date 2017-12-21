@@ -1,8 +1,9 @@
 package main;
 
+import java.io.Serializable;
 import java.util.*;
 
-public class Board {
+public class Board implements Serializable{
 
     private Piece[][] board;
 

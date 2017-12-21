@@ -11,6 +11,10 @@ public abstract class Piece {
     protected int attackValue;
     protected int defenceValue;
 
+    public Piece(){
+
+    }
+
     public Piece(int x, int y, String name, String color, int value, int actionValue) {
         this.x = x;
         this.y = y;

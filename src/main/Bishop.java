@@ -1,6 +1,12 @@
 package main;
 
-public class Bishop extends Piece{
+import java.io.Serializable;
+
+public class Bishop extends Piece implements Serializable{
+
+    public Bishop() {
+
+    }
     public Bishop (int x, int y,String name, String color)
     {
         super(x,y,name,color, 325, 30);

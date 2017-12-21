@@ -9,14 +9,23 @@ public class GameEngine {
     private GameState gameStatus = GameState.IN_GAME;
     private String playerName;
     private Board gameBoard;
+    private int depth;
     private Scanner sc = new Scanner(System.in);
     private AIEngine ai;
     private boolean inputStatus = true;
 
 
-    public GameEngine(String playerName){
+    public GameEngine(String playerName, int depth){
         this.playerName = playerName;
+        this.depth = depth;
         gameBoard = new Board();
+        ai = new AIEngine();
+        run();
+    }
+
+    public GameEngine(String playerName, Board loadedBoard, int depth){
+        this.playerName = playerName;
+        gameBoard = loadedBoard;
         ai = new AIEngine();
         run();
     }
@@ -87,8 +96,14 @@ public class GameEngine {
 
     private void checkAndMoveUser(){
         while (true) {
-            System.out.println("Write down a move in format currentxy,nextxy");
+            System.out.println("Write down a move in format currentxy,nextxy, OR write save to save the game");
             String moveString = sc.nextLine();
+            if (moveString.equals("save")){
+                System.out.println("Enter file name to save :");
+                String fname = sc.nextLine();
+                Main.saveGame(gameBoard, playerName, fname, depth);
+                System.exit(0);
+            }
             if (gameBoard.hasPiece(Integer.parseInt("" + moveString.charAt(0)), Integer.parseInt("" + moveString.charAt(1)))){
                 Piece pc = gameBoard.getCell(Integer.parseInt("" + moveString.charAt(0)), Integer.parseInt("" + moveString.charAt(1)));
                 if (!pc.checkMove(Integer.parseInt("" + moveString.charAt(3)), Integer.parseInt("" + moveString.charAt(4)), gameBoard)){
@@ -111,4 +126,5 @@ public class GameEngine {
         movingPiece.setY(newY);
         movingPiece.calculateAttackAndDefense(b);
     }
+
 }
