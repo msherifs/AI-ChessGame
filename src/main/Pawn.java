@@ -38,7 +38,7 @@ public class Pawn extends Piece implements Serializable{
                 return false;
             }else{//case pawn is not in original position
                 //check if pawn is capturing another piece
-                if(Math.abs(new_row - old_row) == 1 && new_col == old_col -1 && b.hasPiece(new_row, new_col)){
+                if(Math.abs(new_col - old_col) == 1 && new_row == old_row -1 && b.hasPiece(new_row, new_col)){
                     return true;
                     //check that pawn is moving forward one square
                 }else if(new_col == old_col && new_row == old_row -1 && !b.hasPiece(new_row, new_col)){
