@@ -24,35 +24,11 @@ public class Pawn extends Piece implements Serializable{
 
         if ((new_row == old_row) && (new_col == old_col))
             return false;
-//
-//        if ((old_x == new_x) && (new_x >= 0 && new_x <= 7) && (new_y >= 0 && new_y <= 7)) {
-//            if (old_y > new_y) {
-//                if (b.hasPiece(old_x, new_y + 1) && !b.getCell(new_x, new_y).getColor().equals(b.getCell(old_x, old_y).getColor())) {
-//                    return true;
-//                } else if (b.hasPiece(old_x, new_y + 1)) {
-//                    return false;
-//                } else {
-//                    return true;
-//                }
-//            } else if (old_y < new_y) {
-//                if (b.hasPiece(old_x, old_y + 1) && !b.getCell(new_x, new_y).getColor().equals(b.getCell(old_x, old_y).getColor())) {
-//                    return true;
-//                } else if (b.hasPiece(old_x, old_y + 1)) {
-//                    return false;
-//                } else {
-//                    return true;
-//                }
-//            } else if (new_y == old_y) {
-//                return true;
-//            }
-//            return true;
-//
-//        }
-//        return true;
+
         if(super.getColor().equals("w")){ //case that pawn is white
             if(old_row == 6){  //case that pawn is in original position
                 //allows pawn to move two spaces ahead as long as there is no space in between
-                if(Math.abs(new_row - old_row) == 1 && new_col == old_col -1 && b.hasPiece(new_row, new_col)){
+                if(Math.abs(new_col - old_col) == 1 && new_row == (old_row - 1) && b.hasPiece(new_row, new_col)){
                     return true;
                 }else if(new_col == old_col && new_row == old_row -1 && !b.hasPiece(new_row, new_col)){
                     return true;
@@ -60,7 +36,7 @@ public class Pawn extends Piece implements Serializable{
                     return true;
                 }
                 return false;
-            }else{//case pawn is nt in original position
+            }else{//case pawn is not in original position
                 //check if pawn is capturing another piece
                 if(Math.abs(new_row - old_row) == 1 && new_col == old_col -1 && b.hasPiece(new_row, new_col)){
                     return true;
@@ -72,15 +48,15 @@ public class Pawn extends Piece implements Serializable{
             }
         }else{//case that pawn is black, repeat same rules as for white
             if(old_row == 1){
-                if(Math.abs(new_col - old_col) == 1 && new_row == old_row +1 && b.hasPiece(new_row, new_row)){
+                if(Math.abs(new_col - old_col) == 1 && new_row == (old_row +1) && b.hasPiece(new_row, new_col)){
                     //System.out.println("Legal move: " + getType()  + " from: (" + old_x + "," + old_y + ") to (" + new_x + "," + new_y + ")");
 
                     return true;
-                }else if(new_col == old_col && new_row == old_row +1 && !b.hasPiece(new_row, new_row)){
+                }else if(new_col == old_col && new_row == (old_row +1) && !b.hasPiece(new_row, new_col)){
                     //System.out.println("Legal move: " + getType()  + " from: (" + old_x + "," + old_y + ") to (" + new_x + "," + new_y + ")");
 
                     return true;
-                }else if(new_col == old_col && new_row == old_row + 2 && !b.hasPiece(new_row, new_row)){
+                }else if(new_col == old_col && new_row == (old_row + 2) && !b.hasPiece(new_row, new_col)){
                     //System.out.println("Legal move: " + getType()  + " from: (" + old_x + "," + old_y + ") to (" + new_x + "," + new_y + ")");
 
                     return true;
