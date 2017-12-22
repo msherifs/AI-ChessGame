@@ -24,7 +24,7 @@ public class Main {
         } else {
             System.out.println("Enter Filename :");
             String fname = sc.nextLine();
-            Main.loadBoard(fname);
+            Main.loadBoard(fname + ".hal9000");
         }
     }
 

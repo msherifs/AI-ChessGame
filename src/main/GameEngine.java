@@ -27,6 +27,7 @@ public class GameEngine {
         this.playerName = playerName;
         gameBoard = loadedBoard;
         ai = new AIEngine();
+        this.depth = depth;
         run();
     }
 
