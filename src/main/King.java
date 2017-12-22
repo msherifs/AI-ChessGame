@@ -30,6 +30,24 @@ public class King extends Piece implements Serializable{
             for (int j =0 ; j<8 ; j++){
                 if (b.getCell(i,j).getType().equals("King"))
                     continue; //avoiding stack overflow
+
+                //if the piece is pawn we have to check after moving the king virtually
+                if (b.getCell(i,j).getType().equals("Pawn")){
+                    Board VB = new Board(b);
+                    VB.setCell(x,y,this);
+                    for (int k =0 ; k<8 ; k++){
+                        for (int l =0 ; l<8 ; l++){
+                            if (VB.getCell(i,j).checkMove(new_x,new_y,VB) && !(VB.getCell(i,j).getColor().equals(this.color))){
+                                System.out.println("king can't move to  "+" ( "+new_x+","+new_y+" ) ");
+                                return false;
+
+                            }
+
+                        }}
+
+                    }
+
+
                 if (b.getCell(i,j).checkMove(new_x,new_y,b) && !(b.getCell(i,j).getColor().equals(this.color))){
                     System.out.println("king can't move to  "+" ( "+new_x+","+new_y+" ) ");
                     return false;
