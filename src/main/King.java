@@ -14,16 +14,32 @@ public class King extends Piece implements Serializable{
 
     public boolean checkMove(int x, int y, Board b) {
 
+
         if (b.getCell(x, y).getColor().equals(this.getColor()))
             return false;
+
+
 
         int old_x = super.getX();
         int old_y = super.getY();
         int new_x = x;
         int new_y = y;
 
+        //making the king unable to move to a certain place  if any piece of the opposite color can move to that place
+        for (int i =0 ; i<8 ; i++){
+            for (int j =0 ; j<8 ; j++){
+                if (b.getCell(i,j).getType().equals("King"))
+                    continue; //avoiding stack overflow
+                if (b.getCell(i,j).checkMove(new_x,new_y,b) && !(b.getCell(i,j).getColor().equals(this.color))){
+                    System.out.println("king can't move to  "+" ( "+new_x+","+new_y+" ) ");
+                    return false;
+
+                }
+            }
+        }
+
         if (b.hasPiece(new_x, new_y)) {
-            if (b.getCell(new_x, new_y).getColor() == super.getColor()) {
+            if (b.getCell(new_x, new_y).getColor().equals( super.getColor())) {
                 return false;
             }
         }
@@ -31,7 +47,7 @@ public class King extends Piece implements Serializable{
             System.out.println("Allowed move: " + getType() + " from: (" + old_x + "," + old_y + ") to (" + new_x + "," + new_y + ")");
             return true;
         }
-        if (super.getColor() == "K") { //white
+        if (super.getColor().equals( "K")) { //white
             //check for the rook in correct postion to apply castling where move two pieces at same time
             if (b.hasPiece(7, 7)) {
                 if (b.getCell(7, 7).getType().equals("Rook")) {
@@ -43,7 +59,7 @@ public class King extends Piece implements Serializable{
                 }
             }
 
-        } else if (super.getColor() == "k") { //black
+        } else if (super.getColor() .equals( "k")){ //black
             if (b.hasPiece(7, 0)) {
                 if (b.getCell(7, 0).getType().equals("Rook")) {
                     if (old_x == 4 && old_y == 0 && new_x == 6 && new_y == 0) {
