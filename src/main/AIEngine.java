@@ -80,8 +80,10 @@ public class AIEngine {
 	 */
 
 	private int evaluate(Board b) {
-		int whiteScore = 0;
-		int blackScore = 0;
+		int white = 0;
+		int black = 0;
+
+		boolean endGamePhase = b.endGamePhase();
 
 		for (int i = 0; i < 8; i++) {
 			for (int j = 0; j < 8; j++) {
@@ -89,14 +91,14 @@ public class AIEngine {
 					//calculatePiece
 					Piece piece = b.getCell(i, j);
 					if (piece.getColor().equals("b"))
-						blackScore += calculatePiece(piece, i, j, false, false);
+						black += calculatePiece(piece, i, j, endGamePhase);
 					else
-						whiteScore += calculatePiece(piece, i, j, false, false);
+						white += calculatePiece(piece, i, j,  endGamePhase);
 				}
 			}
 		}
 
-		return blackScore - whiteScore; //returns blackscore-whitescore, black player tries to maximize, white player tries to minimize
+		return black - white; //returns blackscore-whitescore, black player tries to maximize, white player tries to minimize
 	}
 
 	/**
@@ -104,12 +106,11 @@ public class AIEngine {
 	 * @param piece   The piece
 	 * @param row     row position of the piece
 	 * @param col     col position of the piece
-	 * @param castled if the piece was castled
 	 * @param endGame if the game is finished
 	 * @return Value representation for the piece
 	 */
 
-	private int calculatePiece(Piece piece, int row, int col, boolean castled, boolean endGame) {
+	private int calculatePiece(Piece piece, int row, int col, boolean endGame) {
 
 		int x = (piece.getColor().equals("b")) ? row : col;
 		int y = (piece.getColor().equals("b")) ? col : row;
@@ -164,8 +165,8 @@ public class AIEngine {
 //			System.out.println(b);
 			int ev = evaluate(b);
 //			System.out.println(ev);
-			System.out.println("<<<<<<<<<<<<EVALUATED BOARD>>>>>>>>>>>>");
-			System.out.println("<<<<<<<ALP: " + alpha + " BET: " + beta + " EVAL: " + ev +">>>>>>>");
+//			System.out.println("<<<<<<<<<<<<EVALUATED BOARD>>>>>>>>>>>>");
+//			System.out.println("<<<<<<<ALP: " + alpha + " BET: " + beta + " EVAL: " + ev +">>>>>>>");
 			return ev;
 		}
 
@@ -207,11 +208,11 @@ public class AIEngine {
 					bestMove = stepEval;
 				}
 				if (beta <= alpha){
-					System.out.println("<<<CUTOF>>>,<<<MINIMIZING>>>\n@BETA: " + beta + " ALP: " + alpha + " DEPTH :" + depth);
+//					System.out.println("<<<CUTOFF>>>,<<<MINIMIZING>>>\n@BETA: " + beta + " ALP: " + alpha + " DEPTH :" + depth);
 					break;
 				}
 			}
-			System.out.println("<<<<<<< AVG Branching Factor is " + bf);
+//			System.out.println("<<<<<<< AVG Branching Factor is " + bf);
 			bf = 0;
 			GameEngine.makeActualMove(moves.get(bestMoveIndex).getOldX(), moves.get(bestMoveIndex).getOldY(), moves.get(bestMoveIndex).getNewX(), moves.get(bestMoveIndex).getNewY(), b);
 			return v;
@@ -232,11 +233,11 @@ public class AIEngine {
 					bestMove = stepEval;
 				}
 				if (beta <= alpha){
-					System.out.println("<<<CUTOF>>>,<<<MAXIMIZING>>>\n@BETA: " + beta + " ALP: " + alpha + " DEPTH :" + depth);
+//					System.out.println("<<<CUTOFF>>>,<<<MAXIMIZING>>>\n@BETA: " + beta + " ALP: " + alpha + " DEPTH :" + depth);
 					break;
 				}
 			}
-			System.out.println("<<<<<<< AVG Branching Factor is " + bf);
+//			System.out.println("<<<<<<< AVG Branching Factor is " + bf);
 			bf = 0;
 			GameEngine.makeActualMove(moves.get(bestMoveIndex).getOldX(), moves.get(bestMoveIndex).getOldY(), moves.get(bestMoveIndex).getNewX(), moves.get(bestMoveIndex).getNewY(), b);
 			return v;

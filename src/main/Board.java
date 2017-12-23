@@ -161,6 +161,17 @@ public class Board implements Serializable{
         }
     }
 
+    public boolean endGamePhase(){
+        int numOfPieces = 0;
+        for(int i=0;i<8;i++){
+            for(int j=0;j<8;j++){
+                if(this.hasPiece(i,j))
+                        numOfPieces++;
+            }
+        }
+        return numOfPieces<=10;
+    }
+
     public Piece[][] getBoard() {
         return board;
     }
