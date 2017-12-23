@@ -7,6 +7,10 @@ public class Board implements Serializable{
 
     private Piece[][] board;
 
+    public Board(Piece [][] pcs){
+        this.board = pcs;
+    }
+
     public Board() {
 
         //initializes the array with nulls , null postion mean that the  board is empty in this postion
@@ -157,5 +161,7 @@ public class Board implements Serializable{
         }
     }
 
-
+    public Piece[][] getBoard() {
+        return board;
+    }
 }

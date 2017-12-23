@@ -46,8 +46,8 @@ public class GameEngine {
                 break;
             }
 
-            ai.minMax(3, Integer.MIN_VALUE, Integer.MAX_VALUE, gameBoard, "b");
-            System.out.println(gameBoard);
+            ai.minMax(depth, Integer.MIN_VALUE, Integer.MAX_VALUE, gameBoard, "b");
+            //System.out.println(gameBoard);
             checkVictory();
             if (gameStatus == GameState.AI_WINNER){
                 showWinner();

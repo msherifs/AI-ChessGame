@@ -68,6 +68,9 @@ public class AIEngine {
 					{-50, -30, -30, -30, -30, -30, -30, -50}
 			};
 
+	int bf = 0;
+	int cutoffs = 0;
+
 	/**
 	 * this function evaluates a board and returns a number that represents the state of the board in prespective of the AI,
 	 * +INF for the Best Move the AI could Play, -INF for the Worst Move the AI Could Play (The Best for the Opponent)
@@ -158,7 +161,12 @@ public class AIEngine {
 
 	public int minMax(int depth, int alpha, int beta, Board b, String turn){
 		if (depth == 0){
-			return evaluate(b);
+//			System.out.println(b);
+			int ev = evaluate(b);
+//			System.out.println(ev);
+			System.out.println("<<<<<<<<<<<<EVALUATED BOARD>>>>>>>>>>>>");
+			System.out.println("<<<<<<<ALP: " + alpha + " BET: " + beta + " EVAL: " + ev +">>>>>>>");
+			return ev;
 		}
 
 		ArrayList<Move> moves = new ArrayList<Move>();
@@ -188,6 +196,7 @@ public class AIEngine {
 			int stepEval;
 			int v = Integer.MIN_VALUE;
 			for (int i = 0 ; i < moves.size() ; i++) {
+				bf++;
 				Board newBoard = new Board(b);
 				GameEngine.makeActualMove(moves.get(i).getOldX(), moves.get(i).getOldY(), moves.get(i).getNewX(), moves.get(i).getNewY(), newBoard);
 				stepEval = minMax(depth - 1, alpha, beta, newBoard, "w");
@@ -198,9 +207,12 @@ public class AIEngine {
 					bestMove = stepEval;
 				}
 				if (beta <= alpha){
+					System.out.println("<<<CUTOF>>>,<<<MINIMIZING>>>\n@BETA: " + beta + " ALP: " + alpha + " DEPTH :" + depth);
 					break;
 				}
 			}
+			System.out.println("<<<<<<< AVG Branching Factor is " + bf);
+			bf = 0;
 			GameEngine.makeActualMove(moves.get(bestMoveIndex).getOldX(), moves.get(bestMoveIndex).getOldY(), moves.get(bestMoveIndex).getNewX(), moves.get(bestMoveIndex).getNewY(), b);
 			return v;
 		} else {
@@ -209,6 +221,7 @@ public class AIEngine {
 			int bestMoveIndex = -1;
 			int stepEval;
 			for (int i = 0 ; i < moves.size() ; i++) {
+				bf++;
 				Board newBoard = new Board(b);
 				GameEngine.makeActualMove(moves.get(i).getOldX(), moves.get(i).getOldY(), moves.get(i).getNewX(), moves.get(i).getNewY(), newBoard);
 				stepEval = minMax(depth - 1, alpha, beta, newBoard, "b");
@@ -219,9 +232,12 @@ public class AIEngine {
 					bestMove = stepEval;
 				}
 				if (beta <= alpha){
+					System.out.println("<<<CUTOF>>>,<<<MAXIMIZING>>>\n@BETA: " + beta + " ALP: " + alpha + " DEPTH :" + depth);
 					break;
 				}
 			}
+			System.out.println("<<<<<<< AVG Branching Factor is " + bf);
+			bf = 0;
 			GameEngine.makeActualMove(moves.get(bestMoveIndex).getOldX(), moves.get(bestMoveIndex).getOldY(), moves.get(bestMoveIndex).getNewX(), moves.get(bestMoveIndex).getNewY(), b);
 			return v;
 		}

@@ -19,7 +19,7 @@ public class Main {
             String pname = sc.nextLine();
             System.out.println("Enter Difficulty, 1 for Easy; 2 for Medium; 3 for Hard");
             int diff = sc.nextInt();
-            diff *= 2;
+            diff += 2;
             GameEngine gameEngine = new GameEngine(pname, diff);
         } else {
             System.out.println("Enter Filename :");
@@ -31,8 +31,8 @@ public class Main {
     public static void saveGame(Board b, String playerName, String fileName, int diff) {
         try {
             ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(fileName + ".hal9000"));
-            os.writeObject(b);
-            os.writeBytes(playerName);
+            os.writeObject(b.getBoard());
+            os.writeObject(playerName);
             os.writeInt(diff);
             os.flush();
             os.close();
@@ -44,11 +44,16 @@ public class Main {
     private static void loadBoard(String fileName){
         try{
             ObjectInputStream is = new ObjectInputStream(new FileInputStream(fileName));
-            Board loadedBoard = (Board) is.readObject();
-            String loadedString = is.readUTF();
+            Object o = is.readObject();
+            //Object o2 = is.readObject();
+            System.out.println(o);
+            //System.out.println(o2);
+            Piece[][] loadedBoard = (Piece [][]) o;
+            System.out.println(loadedBoard);
+            String loadedString = (String) is.readObject();
             int diff = is.readInt();
             is.close();
-            GameEngine gameEngine = new GameEngine(loadedString, loadedBoard, diff);
+            GameEngine gameEngine = new GameEngine(loadedString, new Board(loadedBoard), diff);
         }catch (IOException e){
             e.printStackTrace();
         }catch(ClassNotFoundException e){

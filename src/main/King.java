@@ -38,7 +38,7 @@ public class King extends Piece implements Serializable{
                     for (int k =0 ; k<8 ; k++){
                         for (int l =0 ; l<8 ; l++){
                             if (VB.getCell(i,j).checkMove(new_x,new_y,VB) && !(VB.getCell(i,j).getColor().equals(this.color))){
-                                System.out.println("king can't move to  "+" ( "+new_x+","+new_y+" ) ");
+                                //System.out.println("king can't move to  "+" ( "+new_x+","+new_y+" ) ");
                                 return false;
 
                             }
@@ -49,7 +49,7 @@ public class King extends Piece implements Serializable{
 
 
                 if (b.getCell(i,j).checkMove(new_x,new_y,b) && !(b.getCell(i,j).getColor().equals(this.color))){
-                    System.out.println("king can't move to  "+" ( "+new_x+","+new_y+" ) ");
+                    //System.out.println("king can't move to  "+" ( "+new_x+","+new_y+" ) ");
                     return false;
 
                 }
@@ -62,7 +62,7 @@ public class King extends Piece implements Serializable{
             }
         }
         if (Math.abs(new_x - old_x) <= 1 && Math.abs(new_y - old_y) <= 1 && (new_x >= 0 && new_x <= 7) && (new_y >= 0 && new_y <= 7)) {
-            System.out.println("Allowed move: " + getType() + " from: (" + old_x + "," + old_y + ") to (" + new_x + "," + new_y + ")");
+            //System.out.println("Allowed move: " + getType() + " from: (" + old_x + "," + old_y + ") to (" + new_x + "," + new_y + ")");
             return true;
         }
         if (super.getColor().equals( "K")) { //white
